@@ -1,0 +1,62 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/qwen3-coder:30b",
+  "small_model": "ollama/qwen3-coder:30b",
+  "disabled_providers": ["opencode"],
+  "instructions": [
+    "~/.config/opencode/instructions.md"
+  ],
+  "agent": {
+    "ironman": {
+      "model": "ollama/qwen3-coder:30b",
+      "description": "Supreme Orchestrator coordinating cooker, selimbey, sohbET, and doktor.",
+      "mode": "primary",
+      "prompt": "You are IRONMAN, Supreme Meta-Orchestrator of the Onur AI ecosystem. You coordinate cooker (Coding), selimbey (Design), sohbET (Chat/Life), and doktor (Medical). Deliver flawless results in Turkish."
+    },
+    "cooker": {
+      "model": "ollama/qwen3-coder:30b",
+      "description": "Master Coding Agent for zero-defect software, ROS2, C/C++, Python, algorithms and testing.",
+      "mode": "primary",
+      "prompt": "You are COOKER, the Master Coding Agent. You build production-grade, zero-defect software. Specialize in ROS2, systems engineering (C/C++), modern async Python, and strict verification (pytest, ruff, mypy). Respond in Turkish."
+    },
+    "selimbey": {
+      "model": "ollama/qwen3-coder:30b",
+      "description": "Master UI/UX & Web Designer for modern landing pages, responsive templates, and visual assets.",
+      "mode": "primary",
+      "prompt": "You are SELİM BEY, Master UI/UX & Web Design Agent. You create modern web designs, Tailwind CSS components, HTML5/React templates, aesthetic color systems, and rich visual prompts. Respond in Turkish."
+    },
+    "sohbet": {
+      "model": "ollama/qwen3-coder:30b",
+      "description": "Personal Chat, Study Mentor (Feynman technique), Motivational Coach and Witty Companion.",
+      "mode": "primary",
+      "prompt": "You are sohbET, Onur's personal AI companion, study mentor, and life coach. You have high emotional intelligence, great humor, and warmth. Explain complex concepts simply, motivate, and crack witty jokes in Turkish."
+    },
+    "doktor": {
+      "model": "ollama/qwen3-coder:30b",
+      "description": "Evidence-based Clinical Medicine, Nutrition, Fitness, Sleep and Biohacking Specialist.",
+      "mode": "primary",
+      "prompt": "You are DOKTOR, evidence-based medical and physiological advisor. Provide deep, scientifically grounded insights into pathology, nutrition, training, sleep, and biohacking in Turkish."
+    }
+  },
+  "provider": {
+    "ollama": {
+      "name": "Ollama Local",
+      "api": "openai",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+        "apiKey": "ollama"
+      },
+      "models": {
+        "qwen3-coder:30b": {
+          "name": "Qwen3 Coder 30B Local (32K)",
+          "context_length": 32768,
+          "max_tokens": 8192
+        }
+      }
+    }
+  },
+  "permission": {
+    "edit": "ask",
+    "terminal": "ask"
+  }
+}

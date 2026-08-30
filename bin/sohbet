@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# ONUR AI Dedicated Agent Launcher: sohbet
+export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+
+if [ $# -eq 0 ]; then
+    exec opencode --agent "sohbET" --model "ollama/qwen3-coder:30b"
+else
+    exec opencode run --agent "sohbET" --model "ollama/qwen3-coder:30b" "$@"
+fi

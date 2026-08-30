@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# ONUR AI Agent Entrypoint (Locked to 100% Unlimited Local Ollama Model)
+export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+
+if [ $# -eq 0 ]; then
+    exec opencode --model "ollama/qwen3-coder:30b"
+else
+    exec opencode run --model "ollama/qwen3-coder:30b" "$@"
+fi
