@@ -26,6 +26,7 @@ Bu sistem, yerel bir **30B LLM (Qwen3-Coder 30B)** motoru üzerinde çalışan, 
 | **`selimbey`** | **Master UI/UX Designer:** Modern landing page'ler, responsive Tailwind CSS şablonları ve renk sistemleri tasarlar. | `selimbey` |
 | **`sohbet`** | **Personal Mentor & Life Coach:** Feynman tekniğiyle ders anlatan, motive eden ve esprili kişisel yol arkadaşı. | `sohbet` |
 | **`doktor`** | **Clinical Health & Biohack:** Kanıta dayalı tıp literatürü, semptom analizi, beslenme, spor ve uyku uzmanı. | `doktor` |
+| **`murekkep`** | **Master Writer & Paraphraser:** Derin anlamsal yeniden yazım, sıfır intihal/tekrar, üslup dönüşümü ve edebi metin yazarı. | `murekkep` |
 
 ---
 
