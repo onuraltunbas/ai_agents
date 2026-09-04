@@ -47,7 +47,7 @@ chmod +x install.sh
 > **Kurulum Neler Yapar?**
 > 1. Gerekli sistem araçlarını (`gcc`, `g++`, `python3`, `ruff`, `mypy`, `pytest`) kurar.
 > 2. `Ollama` ve `OpenCode CLI` motorunu kurar.
-> 3. `qwen3-coder:30b` ve `nomic-embed-text` modellerini indirip 64K context ve termal optimizasyonla yapılandırır.
+> 3. `qwen3-coder:30b` ve `nomic-embed-text` modellerini indirip 32K context ve termal optimizasyonla yapılandırır.
 > 4. Tüm ajanları, skilleri ve terminal komutlarını global olarak hazır hale getirir.
 
 ---

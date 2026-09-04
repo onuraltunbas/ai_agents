@@ -21,13 +21,13 @@ if ! command -v ollama &> /dev/null; then
 fi
 
 # 4. Pull Model & Configure Modelfile
-echo "🧠 Setting up local Qwen3-Coder 30B model with 64K context & thermal optimization..."
+echo "🧠 Setting up local Qwen3-Coder 30B model with 32K context & thermal optimization..."
 ollama pull qwen3-coder:30b
 ollama pull nomic-embed-text
 
 cat << 'MODEL_EOF' > /tmp/Modelfile-onur-ai
 FROM qwen3-coder:30b
-PARAMETER num_ctx 65536
+PARAMETER num_ctx 32768
 PARAMETER num_thread 6
 MODEL_EOF
 ollama create qwen3-coder:30b -f /tmp/Modelfile-onur-ai
