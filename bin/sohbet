@@ -3,7 +3,7 @@
 export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 if [ $# -eq 0 ]; then
-    exec opencode --agent "sohbET" --model "ollama/qwen3-coder:30b"
+    exec opencode --agent "sohbet" --model "ollama/qwen3-coder:30b"
 else
-    exec opencode run --agent "sohbET" --model "ollama/qwen3-coder:30b" "$@"
+    exec opencode run --agent "sohbet" --model "ollama/qwen3-coder:30b" "$@"
 fi

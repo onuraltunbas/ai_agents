@@ -6,13 +6,16 @@ import re
 import subprocess
 import urllib.request
 
-sys.path.insert(0, "/home/onur/onur_ai_core")
-sys.path.insert(0, "/home/onur/stress_test")
+from pathlib import Path
+
+CORE_DIR = Path(__file__).resolve().parent
+if str(CORE_DIR) not in sys.path:
+    sys.path.insert(0, str(CORE_DIR))
 
 from memory import MemoryEngine
 from guardian import Guardian, RiskLevel
 from rag import LocalRAG
-from onur_verifier import CodeVerifier, extract_clean_code
+from verifier import CodeVerifier, extract_clean_code
 
 OLLAMA_API = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen3-coder:30b"
@@ -67,13 +70,22 @@ def run_agent_workflow(repo_path: str, user_instruction: str):
         print(f"   -> {os.path.basename(r['file_path'])} (similarity: {r['score']:.3f})")
     
     # 4. Run Pytest to capture exact failure before fix
+    pytest_bin = CodeVerifier.get_bin("pytest")
+    ruff_bin = CodeVerifier.get_bin("ruff")
+    mypy_bin = CodeVerifier.get_bin("mypy")
+
     print("\n🧪 [Verifier] Running initial test suite...")
     env = os.environ.copy()
     env["PYTHONPATH"] = repo_path
-    res_test = subprocess.run(["/home/onur/.local/bin/pytest", os.path.join(repo_path, "tests")], capture_output=True, text=True, env=env)
+    res_test = subprocess.run([pytest_bin, os.path.join(repo_path, "tests")], capture_output=True, text=True, env=env)
     
     # 5. Agent Diagnosis and Fix Prompt
     target_file = os.path.join(repo_path, "src/sensor_fusion.py")
+    if not os.path.exists(target_file):
+        # Fallback to any python file if run in a generic directory
+        py_files = [os.path.join(r, f) for r, _, fs in os.walk(repo_path) for f in fs if f.endswith(".py") and "test" not in f]
+        target_file = py_files[0] if py_files else os.path.join(repo_path, "main.py")
+
     with open(target_file, "r") as f:
         original_code = f.read()
         
@@ -81,7 +93,7 @@ def run_agent_workflow(repo_path: str, user_instruction: str):
 {mem_prompt}
 
 REPOSITORY CONTEXT:
-Target file: src/sensor_fusion.py
+Target file: {os.path.relpath(target_file, repo_path)}
 Content:
 ```python
 {original_code}
@@ -96,9 +108,9 @@ USER GOAL:
 {user_instruction}
 
 INSTRUCTIONS:
-1. Fix the angle normalization and Kalman filter innovation wrap-around bug so that shortest angular distance around [-pi, pi] is used in `update()` and `normalize_angle()`.
+1. Fix the issues identified in diagnostics and achieve the user goal.
 2. Maintain all type hints and dataclass definitions. Do NOT leave unused imports.
-3. Return the COMPLETE fixed `src/sensor_fusion.py` in a ```python ... ``` code block.
+3. Return the COMPLETE fixed file in a ```python ... ``` code block.
 """
     print("⏳ [Local LLM] Generating fix with Qwen3-Coder 30B (64K context)...")
     t0 = time.time()
@@ -111,8 +123,8 @@ INSTRUCTIONS:
         f.write(new_code)
         
     # Auto-format / fix lints with ruff
-    subprocess.run(["/home/onur/.local/bin/ruff", "check", "--fix", target_file], capture_output=True, text=True)
-    subprocess.run(["/home/onur/.local/bin/ruff", "format", target_file], capture_output=True, text=True)
+    subprocess.run([ruff_bin, "check", "--fix", target_file], capture_output=True, text=True)
+    subprocess.run([ruff_bin, "format", target_file], capture_output=True, text=True)
         
     # 6. Guardian Risk Assessment on Git Diff
     diff_res = subprocess.run(["git", "-C", repo_path, "diff"], capture_output=True, text=True)
@@ -123,9 +135,9 @@ INSTRUCTIONS:
         
     # 7. Multi-Stage Verification Pipeline (AST + Ruff + Mypy + Pytest)
     print("\n🔬 [Verifier] Running Multi-Stage Verification Pipeline...")
-    res_ruff = subprocess.run(["/home/onur/.local/bin/ruff", "check", target_file], capture_output=True, text=True)
-    res_mypy = subprocess.run(["/home/onur/.local/bin/mypy", "--ignore-missing-imports", target_file], capture_output=True, text=True)
-    res_pytest = subprocess.run(["/home/onur/.local/bin/pytest", os.path.join(repo_path, "tests")], capture_output=True, text=True, env=env)
+    res_ruff = subprocess.run([ruff_bin, "check", target_file], capture_output=True, text=True)
+    res_mypy = subprocess.run([mypy_bin, "--ignore-missing-imports", target_file], capture_output=True, text=True)
+    res_pytest = subprocess.run([pytest_bin, os.path.join(repo_path, "tests")], capture_output=True, text=True, env=env)
     
     if res_pytest.returncode == 0 and res_ruff.returncode == 0 and res_mypy.returncode == 0:
         print("🎉 ALL TESTS, RUFF LINTER & MYPY PASSED 100% (ZERO DEFECTS)!")
@@ -134,7 +146,7 @@ INSTRUCTIONS:
         print("="*100)
         
         # Record successful decision in memory
-        memory.record_decision("ros2_robotics_sim", "Fixed angle innovation wrap in SensorFusionKalman1D", "Angle difference normalized to [-pi, pi] for Kalman update stability", True)
+        memory.record_decision(os.path.basename(repo_path), "Autonomous code fix applied and verified", "Passed Ruff, Mypy and Pytest", True)
         print("💾 [Memory] Recorded verified solution into long-term memory database.")
         return True
     else:
@@ -145,5 +157,6 @@ INSTRUCTIONS:
         return False
 
 if __name__ == "__main__":
-    sandbox_repo = "/home/onur/agent_sandbox/ros2_robotics_sim"
-    run_agent_workflow(sandbox_repo, "Fix the Kalman filter innovation wrapping failure in sensor fusion module.")
+    target_repo = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
+    goal = sys.argv[2] if len(sys.argv) > 2 else "Fix tests and ensure zero defects."
+    run_agent_workflow(target_repo, goal)

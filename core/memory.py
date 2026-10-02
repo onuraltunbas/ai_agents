@@ -4,7 +4,7 @@ import json
 import time
 from typing import List, Dict, Any, Optional
 
-DB_PATH = "/home/onur/.onur_ai/memory.db"
+DB_PATH = os.path.expanduser("~/.onur_ai/memory.db")
 
 class MemoryEngine:
     def __init__(self, db_path: str = DB_PATH):

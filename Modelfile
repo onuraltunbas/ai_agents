@@ -1,0 +1,20 @@
+FROM qwen3-coder:30b
+
+# 32K context window optimized for performance and RAM/VRAM offloading
+PARAMETER num_ctx 32768
+
+# 6 CPU threads for hybrid inference
+PARAMETER num_thread 6
+
+# Generation parameters
+PARAMETER temperature 0.7
+PARAMETER top_k 20
+PARAMETER top_p 0.8
+PARAMETER repeat_penalty 1.05
+
+# Stop tokens
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+
+TEMPLATE """{{ .Prompt }}"""
