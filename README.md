@@ -1,8 +1,8 @@
-# 🤖 ONUR AI - Autonomous Local Multi-Agent Ecosystem
+# 🤖 AI AGENTS - Autonomous Local Multi-Agent Ecosystem
 
 %100 Yerel (Offline), Gizlilik Odaklı, Sınırsız, Uzun Süreli Hafızalı ve Kendi Kendini Doğrulayan (Zero-Defect) Çoklu Yapay Zeka Ajan Sistemi.
 
-Bu repository, başka herhangi bir Linux (Ubuntu/Debian) bilgisayara klonlanıp kurulduğunda, **tüm ayarlarınız, 6 uzman ajanınız, 14 modüler beceriniz (skills), SQLite kalıcı hafızanız ve 30.5B MoE modelinizle** birlikte eksiksiz olarak ayağa kalkacak şekilde tasarlanmıştır.
+Bu repository, başka herhangi bir Linux (Ubuntu/Debian) bilgisayara klonlanıp kurulduğunda, **tüm ayarlar, 6 uzman ajan, 14 modüler beceri (skills), SQLite kalıcı hafıza ve 30.5B MoE modeliyle** birlikte eksiksiz olarak ayağa kalkacak şekilde tasarlanmıştır.
 
 ---
 
@@ -66,7 +66,7 @@ source ~/.bashrc
 4. `qwen3-coder:30b` ve `nomic-embed-text` modellerini indirip, **32K Context** ve **6 CPU Thread** optimizasyonlu `Modelfile` ile derler.
 5. `OpenCode CLI` motorunu kurar.
 6. Ajanların sistem promptlarını, kurallarını (`instructions.md`) ve 14 adet uzmanlık becerisini (`skills/`) yapılandırır.
-7. Uzun süreli SQLite hafızasını (`memory.db`) varsayılan tercihlerinizle (tip zorunluluğu, zero-defect kuralı, güvenlik kapısı) başlatır.
+7. Uzun süreli SQLite hafızasını (`memory.db`) varsayılan tercihlerle (tip zorunluluğu, zero-defect kuralı, güvenlik kapısı) başlatır.
 8. Terminal komutlarını (`ironman`, `cooker`, `selimbey`, `sohbet`, `doktor`, `murekkep`, `agent`) global olarak `~/.local/bin` dizinine ekler.
 
 ---
@@ -102,11 +102,11 @@ curl -fsSL https://opencode.ai/install | bash
 
 ### Adım 5: Yapılandırma ve Becerilerin Kopyalanması
 ```bash
-mkdir -p ~/.config/opencode/skills ~/.onur_ai/core
+mkdir -p ~/.config/opencode/skills ~/.local_ai/core
 cp config/opencode.jsonc ~/.config/opencode/opencode.jsonc
 cp config/instructions.md ~/.config/opencode/instructions.md
 cp -r skills/* ~/.config/opencode/skills/
-cp -r core/* ~/.onur_ai/core/
+cp -r core/* ~/.local_ai/core/
 ```
 
 ### Adım 6: Kalıcı Hafızanın Başlatılması
@@ -134,7 +134,7 @@ Kurulum bittikten sonra terminalinizde herhangi bir dizindeyken doğrudan çağ�
 ### 1. Yazılım Geliştirme & Hata Onarımı (`cooker`)
 ```bash
 # Proje dizinine girip interaktif oturum açın:
-cd /home/kullanici/projeler/web_app
+cd /yol/proje_klasoru
 cooker
 
 # Veya tek satırda komut verin:
@@ -209,7 +209,7 @@ ai_agents/
 ├── core/                         # Bağımsız Python çekirdek motoru
 │   ├── guardian.py               # Git diff risk analizi ve güvenlik bekçisi
 │   ├── memory.py                 # SQLite uzun süreli hafıza motoru
-│   ├── onur_orchestrator.py      # Otonom hata tespit, onarım ve test döngüsü
+│   ├── orchestrator.py           # Otonom hata tespit, onarım ve test döngüsü
 │   ├── rag.py                    # nomic-embed-text tabanlı yerel kod vektör arama
 │   ├── seed_memory.py            # Hafıza veritabanı varsayılan tercih yükleyicisi
 │   └── verifier.py               # Ruff, Mypy, Pytest doğrulama kütüphanesi

@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Tuple
 
 OLLAMA_EMBED_API = "http://localhost:11434/api/embeddings"
 EMBED_MODEL = "nomic-embed-text"
-DB_PATH = os.path.expanduser("~/.onur_ai/rag_index.db")
+DB_PATH = os.path.expanduser("~/.local_ai/rag_index.db")
 
 def get_embedding(text: str) -> List[float]:
     payload = {"model": EMBED_MODEL, "prompt": text}

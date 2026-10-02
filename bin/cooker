@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ONUR AI Dedicated Agent Launcher: cooker
+# AI AGENTS Dedicated Agent Launcher: cooker
 export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 if [ $# -eq 0 ]; then

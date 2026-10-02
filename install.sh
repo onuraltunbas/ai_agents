@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# ONUR AI Multi-Agent Ecosystem - 1-Click Complete Installer
+# AI AGENTS - Autonomous Multi-Agent Ecosystem - 1-Click Complete Installer
 # ==============================================================================
-# Bu betik sıfır bir Linux/Ubuntu makinede Onur AI ekosistemini (Ollama,
+# Bu betik sıfır bir Linux/Ubuntu makinede yerel çoklu ajan ekosistemini (Ollama,
 # Qwen3-Coder 30B, OpenCode CLI, tüm 6 ajan, 14 skill ve SQLite hafızayı)
 # birebir eksiksiz olarak kurar ve kullanıma hazır hale getirir.
 # ==============================================================================
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo "🚀 Installing ONUR AI Multi-Agent Ecosystem from: $SCRIPT_DIR"
+echo "🚀 Installing Autonomous Multi-Agent Ecosystem from: $SCRIPT_DIR"
 
 # 1. Sistem Bağımlılıklarını Kur
 echo ""
@@ -73,12 +73,12 @@ fi
 # 6. Konfigürasyon, Ajan Promptları ve Becerileri (Skills) Kopyala
 echo ""
 echo "📁 [6/8] Configuring agents, skills, instructions and core modules..."
-mkdir -p "$HOME/.config/opencode/skills" "$HOME/.onur_ai/core"
+mkdir -p "$HOME/.config/opencode/skills" "$HOME/.local_ai/core"
 
 cp "$SCRIPT_DIR/config/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
 cp "$SCRIPT_DIR/config/instructions.md" "$HOME/.config/opencode/instructions.md"
 cp -r "$SCRIPT_DIR/skills/"* "$HOME/.config/opencode/skills/"
-cp -r "$SCRIPT_DIR/core/"* "$HOME/.onur_ai/core/"
+cp -r "$SCRIPT_DIR/core/"* "$HOME/.local_ai/core/"
 
 # 7. SQLite Kalıcı Hafızayı (Memory) Başlat
 echo ""
@@ -109,7 +109,7 @@ export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 echo ""
 echo "========================================================================"
-echo "🎉 ONUR AI Multi-Agent Ekosistemi Başarıyla Kuruldu ve Hazır!"
+echo "🎉 AI AGENTS Multi-Agent Ekosistemi Başarıyla Kuruldu ve Hazır!"
 echo "========================================================================"
 echo "Terminalde herhangi bir klasörden doğrudan çalıştırabileceğiniz ajanlar:"
 echo "  👑 ironman   -> Supreme Meta-Orchestrator (Tüm ekibi yöneten üst ajan)"
@@ -118,6 +118,6 @@ echo "  🎨 selimbey  -> Master UI/UX & Web Designer (Tailwind, Landing Page, M
 echo "  ☕ sohbet    -> Personal Mentor, Chat & Life Coach (Feynman tekniği, samimi sohbet)"
 echo "  🩺 doktor    -> Clinical Health & Biohack Specialist (Kanıta dayalı tıp, beslenme, spor)"
 echo "  ✍️ murekkep  -> Master Writer & Paraphraser (Derin yeniden yazım, üslup dönüşümü)"
-echo "  🤖 agent     -> Genel Onur AI CLI Başlatıcısı"
+echo "  🤖 agent     -> Genel AI AGENTS CLI Başlatıcısı"
 echo "========================================================================"
 echo "💡 İpucu: Yeni bir terminal açarak veya 'source ~/.bashrc' diyerek hemen kullanabilirsiniz!"

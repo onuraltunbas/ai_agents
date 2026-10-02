@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ONUR AI Dedicated Writer & Paraphraser Agent: murekkep
+# AI AGENTS Dedicated Writer & Paraphraser Agent: murekkep
 export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 if [ $# -eq 0 ]; then

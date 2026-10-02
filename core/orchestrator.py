@@ -43,7 +43,7 @@ def call_local_model(prompt: str, system: str = "") -> str:
 
 def run_agent_workflow(repo_path: str, user_instruction: str):
     print("="*75)
-    print("🤖 ONUR AI UNIFIED AGENT & ORCHESTRATOR")
+    print("🤖 LOCAL AI UNIFIED AGENT & ORCHESTRATOR")
     print("="*75)
     
     # 1. Initialize Long-Term Memory

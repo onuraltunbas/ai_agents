@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ONUR AI Dedicated Agent Launcher: selimbey
+# AI AGENTS Dedicated Agent Launcher: selimbey
 export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
 
 if [ $# -eq 0 ]; then

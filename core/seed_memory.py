@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Seed script to initialize ~/.onur_ai/memory.db with default preferences and rules.
-This ensures any new machine inherits Onur's exact agent memory settings out of the box.
+Seed script to initialize ~/.local_ai/memory.db with default preferences and rules.
+This ensures any new machine inherits the exact agent memory settings out of the box.
 """
 import sys
 from pathlib import Path
