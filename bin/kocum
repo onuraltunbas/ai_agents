@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# KOÇUM AI - Yerel Yapay Zeka Ders Koçu & Adaptif Çalışma Başlatıcısı
+# ==============================================================================
+set -e
+
+# Add opencode and local bins to PATH
+export PATH="$HOME/.opencode/bin:$HOME/.local/bin:$PATH"
+
+# Resolve repo directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$SCRIPT_DIR:$PYTHONPATH"
+
+# Check if arguments represent a python CLI command or web flag
+case "$1" in
+    web|--web|-w)
+        exec python3 -m kocum.cli web
+        ;;
+    status|plan|done|feedback|memory|add-course)
+        exec python3 -m kocum.cli "$@"
+        ;;
+    cli)
+        shift
+        exec python3 -m kocum.cli "$@"
+        ;;
+    --help|-h)
+        echo "🎓 Koçum AI - Kullanım Kılavuzu:"
+        echo "  kocum                 -> Dedicated Opencode / Local AI Ajanını Başlatır"
+        echo "  kocum web             -> Modern Web Arayüzünü (Streamlit Dashboard) Açar"
+        echo "  kocum cli             -> İnteraktif Renkli Terminal Menüsünü Açar"
+        echo "  kocum status          -> Bugünün ders programını ve görev durumunu gösterir"
+        echo "  kocum plan            -> Bugünkü ders programını optimize edip yeniden oluşturur"
+        echo "  kocum done <ID>       -> Belirtilen ders görevini tamamlandı olarak işaretler"
+        echo "  kocum feedback <not>  -> Anlık geri bildirim gönderir ve programı yeniden dengeler"
+        echo "  kocum memory          -> Yapay zekanın senin hakkında öğrendiği hafıza profilini gösterir"
+        echo "  kocum add-course <ad> -> Yeni ders ekler ve internetten müfredatını çıkarır"
+        exit 0
+        ;;
+    *)
+        # If opencode is installed, launch dedicated kocum agent
+        if command -v opencode &> /dev/null; then
+            if [ $# -eq 0 ]; then
+                exec opencode --agent "kocum" --model "ollama/qwen3-coder:30b"
+            else
+                exec opencode run --agent "kocum" --model "ollama/qwen3-coder:30b" "$@"
+            fi
+        else
+            # Fallback to python interactive CLI if opencode is not in path
+            exec python3 -m kocum.cli "$@"
+        fi
+        ;;
+esac
