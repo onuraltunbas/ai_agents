@@ -16,7 +16,7 @@ case "$1" in
     web|--web|-w)
         exec python3 -m kocum.cli web
         ;;
-    status|plan|done|feedback|memory|add-course)
+    status|plan|done|feedback|memory|add-course|set-key|chat)
         exec python3 -m kocum.cli "$@"
         ;;
     cli)
