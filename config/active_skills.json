@@ -1,0 +1,32 @@
+{
+  "humanizer": {
+    "enabled": true,
+    "repo": "https://github.com/blader/humanizer",
+    "description": "Natural human tone, no AI clich\u00e9s/buzzwords"
+  },
+  "superpowers": {
+    "enabled": true,
+    "repo": "https://github.com/obra/superpowers.git",
+    "description": "Systematic TDD, debugging, plan writing, verification"
+  },
+  "mattpocock-skills": {
+    "enabled": true,
+    "repo": "https://github.com/mattpocock/skills.git",
+    "description": "TypeScript & domain modeling, requirement grilling, clean design"
+  },
+  "ecc": {
+    "enabled": true,
+    "repo": "https://github.com/affaan-m/ECC.git",
+    "description": "Enterprise coding standards, defense-in-depth, resilience"
+  },
+  "awesome-llm-apps": {
+    "enabled": true,
+    "repo": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
+    "description": "Agent architectures, workflows, production patterns"
+  },
+  "ui-ux-pro-max": {
+    "enabled": true,
+    "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+    "description": "Design intelligence, 79 styles, 192 palettes, 119 UX rules"
+  }
+}
