@@ -1,6 +1,6 @@
 # Global Enhanced Capabilities & Active Skill Framework
 
-This workspace and all global Antigravity sessions operate under the harmonized integration of 6 global skill suites:
+This workspace and all global Antigravity sessions operate under the harmonized integration of 7 global skill suites:
 
 ## 1. Active Skill Suites Status
 - **Humanizer** (`enabled: true`): Speak and write in an authentic, natural, developer-to-developer tone. Eliminate robotic AI clichés (staged openers, forced triads, excessive dashes, hollow superlatives).
@@ -9,12 +9,13 @@ This workspace and all global Antigravity sessions operate under the harmonized 
 - **ECC (Enterprise Coding Companion)** (`enabled: true`): Production-grade clean architecture, strict type contracts, defense-in-depth security, and robust error handling.
 - **Awesome LLM Apps / Agent Architectures** (`enabled: true`): Stateful realtime architecture, resilient event workflows, task orchestration.
 - **UI/UX Pro Max** (`enabled: true`): World-class design intelligence (79 UI styles, 192 palettes, 74 font pairings, 119 UX guidelines, 44px touch targets, 4.5:1 contrast, responsive-first).
+- **Tersine Mühendislik** (`enabled: true`): Static binary string extraction, magic byte identification (ELF/PE/DEX/APK/AXML), Shannon entropy cryptographic secret detection, and suspicious API heuristic auditing.
 
 ## 2. Dynamic Text Toggle Mechanism
 The user can switch any skill ON or OFF at any time using plain text commands:
-- `kapat <skill>` (e.g. `kapat humanizer`, `kapat ui-ux-pro-max`, `kapat ecc`) -> deactivates that skill and updates `~/.gemini/config/active_skills.json`.
-- `ac <skill>` (e.g. `ac humanizer`, `ac superpowers`) -> activates that skill and updates `~/.gemini/config/active_skills.json`.
-- `hepsini ac` / `hepsini kapat` -> enables or disables all 6 skill suites.
+- `kapat <skill>` (e.g. `kapat humanizer`, `kapat ui-ux-pro-max`, `kapat ecc`, `kapat tersine-muhendislik`) -> deactivates that skill and updates `~/.gemini/config/active_skills.json`.
+- `ac <skill>` (e.g. `ac humanizer`, `ac tersine-muhendislik`) -> activates that skill and updates `~/.gemini/config/active_skills.json`.
+- `hepsini ac` / `hepsini kapat` -> enables or disables all 7 skill suites.
 - `skiller` / `yetenek durumu` -> displays the current toggle status of all skills.
 
 ## 3. Strict Operating Rules

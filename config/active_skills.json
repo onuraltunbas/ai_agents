@@ -2,7 +2,7 @@
   "humanizer": {
     "enabled": true,
     "repo": "https://github.com/blader/humanizer",
-    "description": "Natural human tone, no AI clich\u00e9s/buzzwords"
+    "description": "Natural human tone, no AI clichés/buzzwords"
   },
   "superpowers": {
     "enabled": true,
@@ -28,5 +28,10 @@
     "enabled": true,
     "repo": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
     "description": "Design intelligence, 79 styles, 192 palettes, 119 UX rules"
+  },
+  "tersine-muhendislik": {
+    "enabled": true,
+    "repo": "https://github.com/safahbo/Tersine-Muhendislik-Final",
+    "description": "Binary magic bytes, UTF-16/ASCII mmap extraction, Shannon entropy secrets, suspicious APIs"
   }
 }
